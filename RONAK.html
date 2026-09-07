@@ -1837,9 +1837,8 @@
             <div class="contact-form">
 
                 <form id="contactForm"
-                      action="https://script.google.com/macros/s/AKfycbxb08KWHx4gtrfEzk1-Z2456_CXgxNhzPOx7bqzpOUppo11650EJSrDYmECDOtqwU_7Hw/exec"
-                      method="POST"
-                      target="contactSubmitFrame">
+      action="https://script.google.com/macros/s/AKfycbxb08KWHx4gtrfEzk1-Z2456_CXgxNhzPOx7bqzpOUppo11650EJSrDYmECDOtqwU_7Hw/exec"
+      method="POST">
 
                     <!-- Anti-spam honeypot. Real users never see this. -->
                     <input
@@ -1900,13 +1899,6 @@
                     </button>
 
                 </form>
-
-                <iframe
-                    name="contactSubmitFrame"
-                    id="contactSubmitFrame"
-                    title="Contact form submission"
-                    style="display:none;"></iframe>
-
             </div>
 
 
@@ -2128,25 +2120,24 @@
         new Date().getFullYear();
 
 
-    /* ================= CONTACT FORM ================= */
+  /* ================= CONTACT FORM ================= */
 
-const contactForm =
-    document.getElementById("contactForm");
-
-const sendButton =
-    contactForm.querySelector('button[type="submit"]');
-
-const contactFrame =
-    document.getElementById("contactSubmitFrame");
+const contactForm = document.getElementById("contactForm");
+const sendButton = contactForm.querySelector('button[type="submit"]');
 
 let formIsSubmitting = false;
-
-let submitTimeout = null;
 
 
 /* ================= FORM SUBMIT ================= */
 
-contactForm.addEventListener("submit", function(event) {
+contactForm.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    if (formIsSubmitting) {
+        return;
+    }
+
 
     const name =
         document.getElementById("name").value.trim();
@@ -2165,8 +2156,6 @@ contactForm.addEventListener("submit", function(event) {
 
     if (!name || !email || !message) {
 
-        event.preventDefault();
-
         showToast("Please fill in all fields.");
 
         return;
@@ -2181,8 +2170,6 @@ contactForm.addEventListener("submit", function(event) {
 
     if (!emailPattern.test(email)) {
 
-        event.preventDefault();
-
         showToast("Please enter a valid email address.");
 
         return;
@@ -2190,11 +2177,9 @@ contactForm.addEventListener("submit", function(event) {
     }
 
 
-    /* Anti-spam honeypot */
+    /* Anti-spam */
 
     if (honeypot) {
-
-        event.preventDefault();
 
         showToast("Message could not be sent.");
 
@@ -2203,101 +2188,106 @@ contactForm.addEventListener("submit", function(event) {
     }
 
 
-    /*
-       IMPORTANT:
-       We do NOT call preventDefault() here.
-
-       The browser will submit the form normally
-       to Google Apps Script using the hidden iframe.
-    */
-
     formIsSubmitting = true;
 
 
-    /* Disable button */
+    /* Button state */
 
     sendButton.disabled = true;
 
     sendButton.textContent = "Sending...";
 
 
-    /* Show sending message */
+    /* Sending message */
 
     showToast("Sending your message...");
 
 
-    /*
-       Fallback timer.
+    try {
 
-       Some mobile browsers do not reliably fire the
-       hidden iframe load event after a cross-origin
-       Google Apps Script submission.
+        const formData = new URLSearchParams();
 
-       If the iframe does not report back, we still
-       reset the form after 4 seconds.
-    */
-
-    clearTimeout(submitTimeout);
-
-    submitTimeout = setTimeout(function() {
-
-        if (!formIsSubmitting) {
-            return;
-        }
-
-        finishContactForm();
-
-    }, 4000);
-
-});
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("message", message);
 
 
-/* ================= FORM SUBMISSION COMPLETE ================= */
+        /*
+         * Google Apps Script Web App
+         *
+         * mode: no-cors is intentional.
+         *
+         * Google Apps Script does not provide the
+         * CORS response headers needed for us to read
+         * the response from GitHub Pages.
+         *
+         * The POST request itself is still sent.
+         */
 
-contactFrame.addEventListener("load", function() {
+        await fetch(
+            contactForm.action,
+            {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+                body: formData.toString()
+            }
+        );
 
-    if (!formIsSubmitting) {
-        return;
+
+        /*
+         * We cannot read the Google Apps Script response
+         * because of no-cors.
+         *
+         * But the request has been handed to the browser,
+         * and your Apps Script is already confirmed to send
+         * the email successfully.
+         */
+
+        contactForm.reset();
+
+
+        sendButton.disabled = false;
+
+        sendButton.textContent =
+            "📩 Send Message";
+
+
+        formIsSubmitting = false;
+
+
+        showToast(
+            "Message sent successfully!"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Contact form error:",
+            error
+        );
+
+
+        formIsSubmitting = false;
+
+
+        sendButton.disabled = false;
+
+        sendButton.textContent =
+            "📩 Send Message";
+
+
+        showToast(
+            "Message could not be sent. Please try again."
+        );
+
     }
 
-    finishContactForm();
-
 });
-
-
-/* ================= FINISH CONTACT FORM ================= */
-
-function finishContactForm() {
-
-    if (!formIsSubmitting) {
-        return;
-    }
-
-
-    formIsSubmitting = false;
-
-
-    clearTimeout(submitTimeout);
-
-
-    /* Clear all form fields */
-
-    contactForm.reset();
-
-
-    /* Restore button */
-
-    sendButton.disabled = false;
-
-    sendButton.textContent = "📩 Send Message";
-
-
-    /* Show success message */
-
-    showToast("Message sent successfully!");
-
-}
-
 
     /* ================= TOAST ================= */
 
