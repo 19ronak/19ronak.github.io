@@ -2130,97 +2130,173 @@
 
     /* ================= CONTACT FORM ================= */
 
-    const contactForm =
-        document.getElementById("contactForm");
+const contactForm =
+    document.getElementById("contactForm");
 
-    const sendButton =
-        contactForm.querySelector('button[type="submit"]');
+const sendButton =
+    contactForm.querySelector('button[type="submit"]');
 
-    let formIsSubmitting = false;
+const contactFrame =
+    document.getElementById("contactSubmitFrame");
+
+let formIsSubmitting = false;
+
+let submitTimeout = null;
 
 
-    contactForm.addEventListener("submit", function(event) {
+/* ================= FORM SUBMIT ================= */
 
-        const name =
-            document.getElementById("name").value.trim();
+contactForm.addEventListener("submit", function(event) {
 
-        const email =
-            document.getElementById("email").value.trim();
+    const name =
+        document.getElementById("name").value.trim();
 
-        const message =
-            document.getElementById("message").value.trim();
+    const email =
+        document.getElementById("email").value.trim();
 
-        const honeypot = document.getElementById("portfolio_hp").value.trim();
+    const message =
+        document.getElementById("message").value.trim();
 
-        if (honeypot) {
-             statusEl.textContent = "Message could not be sent.";
-            statusEl.className = "form-status error";
+    const honeypot =
+        document.getElementById("portfolio_hp").value.trim();
+
+
+    /* Required fields */
+
+    if (!name || !email || !message) {
+
+        event.preventDefault();
+
+        showToast("Please fill in all fields.");
+
+        return;
+
+    }
+
+
+    /* Email validation */
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+
+        event.preventDefault();
+
+        showToast("Please enter a valid email address.");
+
+        return;
+
+    }
+
+
+    /* Anti-spam honeypot */
+
+    if (honeypot) {
+
+        event.preventDefault();
+
+        showToast("Message could not be sent.");
+
+        return;
+
+    }
+
+
+    /*
+       IMPORTANT:
+       We do NOT call preventDefault() here.
+
+       The browser will submit the form normally
+       to Google Apps Script using the hidden iframe.
+    */
+
+    formIsSubmitting = true;
+
+
+    /* Disable button */
+
+    sendButton.disabled = true;
+
+    sendButton.textContent = "Sending...";
+
+
+    /* Show sending message */
+
+    showToast("Sending your message...");
+
+
+    /*
+       Fallback timer.
+
+       Some mobile browsers do not reliably fire the
+       hidden iframe load event after a cross-origin
+       Google Apps Script submission.
+
+       If the iframe does not report back, we still
+       reset the form after 4 seconds.
+    */
+
+    clearTimeout(submitTimeout);
+
+    submitTimeout = setTimeout(function() {
+
+        if (!formIsSubmitting) {
             return;
         }
 
+        finishContactForm();
 
-        const emailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    }, 4000);
 
-        if (!emailPattern.test(email)) {
-
-            event.preventDefault();
-
-            showToast("Please enter a valid email address.");
-
-            return;
-
-        }
+});
 
 
-        if (website) {
+/* ================= FORM SUBMISSION COMPLETE ================= */
 
-            event.preventDefault();
+contactFrame.addEventListener("load", function() {
 
-            showToast("Message could not be sent.");
+    if (!formIsSubmitting) {
+        return;
+    }
 
-            return;
+    finishContactForm();
 
-        }
-        
-        
-        if (contactForm.action.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
-            event.preventDefault();
-
-            showToast("Contact backend is not connected yet.");
-
-            return;
-
-        }
+});
 
 
-        formIsSubmitting = true;
+/* ================= FINISH CONTACT FORM ================= */
 
-        sendButton.disabled = true;
-        sendButton.textContent = "Sending...";
+function finishContactForm() {
 
-        showToast("Sending your message...");
+    if (!formIsSubmitting) {
+        return;
+    }
 
-    });
+
+    formIsSubmitting = false;
 
 
-    document.getElementById("contactSubmitFrame")
-        .addEventListener("load", function() {
+    clearTimeout(submitTimeout);
 
-            if (!formIsSubmitting) {
-                return;
-            }
 
-            formIsSubmitting = false;
+    /* Clear all form fields */
 
-            contactForm.reset();
+    contactForm.reset();
 
-            sendButton.disabled = false;
-            sendButton.textContent = "📩 Send Message";
 
-            showToast("Message sent successfully!");
+    /* Restore button */
 
-        });
+    sendButton.disabled = false;
+
+    sendButton.textContent = "📩 Send Message";
+
+
+    /* Show success message */
+
+    showToast("Message sent successfully!");
+
+}
 
 
     /* ================= TOAST ================= */
