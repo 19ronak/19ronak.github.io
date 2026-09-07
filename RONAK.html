@@ -1843,13 +1843,13 @@
 
                     <!-- Anti-spam honeypot. Real users never see this. -->
                     <input
-                        type="text"
-                        name="website"
-                        id="website"
-                        tabindex="-1"
-                        autocomplete="off"
-                        aria-hidden="true"
-                        style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+                       type="text"
+                       name="portfolio_hp"
+                       id="portfolio_hp"
+                       tabindex="-1"
+                       autocomplete="new-password"
+                       aria-hidden="true"
+                       style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
 
                     <div class="form-group">
 
@@ -2150,18 +2150,12 @@
         const message =
             document.getElementById("message").value.trim();
 
-        const website =
-            document.getElementById("website").value.trim();
+        const honeypot = document.getElementById("portfolio_hp").value.trim();
 
-
-        if (!name || !email || !message) {
-
-            event.preventDefault();
-
-            showToast("Please fill in all fields.");
-
+        if (honeypot) {
+             statusEl.textContent = "Message could not be sent.";
+            statusEl.className = "form-status error";
             return;
-
         }
 
 
