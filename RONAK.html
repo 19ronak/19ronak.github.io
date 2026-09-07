@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Ronak Kale | BSc IT Student & Developer</title>
+
+<meta name="description" content="Ronak Kale - BSc IT student, developer and technology enthusiast. Explore my projects, skills, education and achievements.">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
+
+    :root {
+        --bg: #0b1120;
+        --bg2: #111827;
+        --card: #151e2e;
+        --border: #263246;
+        --text: #f8fafc;
+        --muted: #a7b0c0;
+        --primary: #38bdf8;
+        --secondary: #818cf8;
+        --nav: rgba(11, 17, 32, 0.92);
+        --shadow: rgba(0, 0, 0, 0.35);
+    }
+
+    body.light {
+        --bg: #f4f7fb;
+        --bg2: #ffffff;
+        --card: #ffffff;
+        --border: #dbe3ef;
+        --text: #111827;
+        --muted: #5f6b7a;
+        --primary: #0284c7;
+        --secondary: #4f46e5;
+        --nav: rgba(255, 255, 255, 0.94);
+        --shadow: rgba(15, 23, 42, 0.12);
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    button {
+        font-family: inherit;
+    }
+
+    .container {
+        width: min(1120px, 92%);
+        margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: var(--nav);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .theme-btn,
+    .menu-btn {
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--text);
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1rem;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    /* HERO */
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 90px;
+        background:
+            radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 30%),
+            radial-gradient(circle at bottom left, rgba(129, 140, 248, 0.10), transparent 30%),
+            var(--bg);
+    }
+
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .hero-text .small-title {
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 12px;
+        font-size: 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        line-height: 1;
+        margin-bottom: 18px;
+    }
+
+    .hero-text h1 span {
+        color: var(--primary);
+    }
+
+    .hero-text h2 {
+        font-size: clamp(1.3rem, 3vw, 2rem);
+        color: var(--muted);
+        margin-bottom: 18px;
+    }
+
+    .hero-text p {
+        max-width: 650px;
+        color: var(--muted);
+        font-size: 1.05rem;
+        margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        font-weight: 700;
+        transition: 0.25s;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: #07111f;
+        border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--text);
+    }
+
+    .btn-outline:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateY(-2px);
+    }
+
+    .hero-card {
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-circle {
+        width: 310px;
+        height: 310px;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+        background: linear-gradient(135deg, var(--card), var(--bg2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 25px 60px var(--shadow);
+        overflow: hidden;
+    }
+
+    .profile-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-placeholder {
+        font-size: 6rem;
+        font-weight: 800;
+        color: var(--primary);
+    }
+
+    /* SECTIONS */
+
+    section {
+        padding: 90px 0;
+    }
+
+    section:nth-child(even) {
+        background: var(--bg2);
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+        font-size: 2.4rem;
+        margin-bottom: 8px;
+    }
+
+    .section-title p {
+        color: var(--muted);
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    .info-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .info-card h3 {
+        margin-bottom: 15px;
+        color: var(--primary);
+    }
+
+    .info-card p {
+        color: var(--muted);
+    }
+
+    .details {
+        list-style: none;
+    }
+
+    .details li {
+        display: flex;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .details li:last-child {
+        border-bottom: none;
+    }
+
+    .details strong {
+        min-width: 100px;
+    }
+
+    .details span {
+        color: var(--muted);
+    }
+
+    /* EDUCATION */
+
+    .education-card {
+        max-width: 850px;
+        margin: auto;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .education-card h3 {
+        color: var(--primary);
+        margin-bottom: 8px;
+    }
+
+    .education-card .degree {
+        font-size: 1.15rem;
+        font-weight: 700;
+    }
+
+    .education-card .college {
+        color: var(--muted);
+        margin-bottom: 20px;
+    }
+
+    .cgpa-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .cgpa-box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px;
+        text-align: center;
+    }
+
+    .cgpa-box h4 {
+        color: var(--muted);
+        margin-bottom: 5px;
+    }
+
+    .cgpa-box strong {
+        font-size: 1.7rem;
+        color: var(--primary);
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 45px;
+    }
+
+    .skill {
+        margin-bottom: 20px;
+    }
+
+    .skill-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .skill-header span:last-child {
+        color: var(--primary);
+    }
+
+    .skill-bar {
+        height: 10px;
+        width: 100%;
+        background: var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .skill-progress {
+        height: 100%;
+        width: 0;
+        border-radius: 20px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transition: width 1.2s ease;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .project-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+        box-shadow: 0 10px 30px var(--shadow);
+        transition: 0.3s;
+    }
+
+    .project-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--primary);
+    }
+
+    .project-icon {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+        font-size: 1.35rem;
+        margin-bottom: 10px;
+    }
+
+    .project-card p {
+        color: var(--muted);
+        flex-grow: 1;
+        margin-bottom: 20px;
+    }
+
+    .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 20px;
+    }
+
+    .tech {
+        font-size: 0.78rem;
+        padding: 5px 9px;
+        border-radius: 20px;
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid var(--border);
+        color: var(--primary);
+    }
+
+    .project-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* COURSES */
+
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+
+    .small-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 25px;
+    }
+
+    .small-card h3 {
+        color: var(--primary);
+        margin-bottom: 8px;
+    }
+
+    .small-card p {
+        color: var(--muted);
+    }
+
+    /* ACHIEVEMENTS */
+
+    .achievement-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .achievement {
+        display: flex;
+        gap: 18px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 24px;
+        border-radius: 15px;
+    }
+
+    .achievement-icon {
+        font-size: 2rem;
+    }
+
+    .achievement h3 {
+        margin-bottom: 5px;
+    }
+
+    .achievement p {
+        color: var(--muted);
+    }
+
+    /* EXPERIENCE */
+
+    .timeline {
+        max-width: 850px;
+        margin: auto;
+        position: relative;
+    }
+
+    .timeline-item {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+
+    .timeline-item h3 {
+        color: var(--primary);
+    }
+
+    .timeline-item p {
+        color: var(--muted);
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 30px;
+    }
+
+    .contact-info,
+    .contact-form {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+    }
+
+    .contact-item {
+        margin-bottom: 20px;
+    }
+
+    .contact-item h4 {
+        color: var(--primary);
+        margin-bottom: 4px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+        color: var(--muted);
+        word-break: break-word;
+    }
+
+    .contact-item a:hover {
+        color: var(--primary);
+    }
+
+    .form-group {
+        margin-bottom: 17px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--text);
+        outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: var(--primary);
+    }
+
+    .form-group textarea {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    /* FOOTER */
+
+    footer {
+        padding: 35px 0;
+        border-top: 1px solid var(--border);
+        background: var(--bg);
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-content p {
+        color: var(--muted);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 12px;
+    }
+
+    .social-links a {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.25s;
+    }
+
+    .social-links a:hover {
+        color: var(--primary);
+        border-color: var(--primary);
+        transform: translateY(-2px);
+    }
+
+    /* SCROLL TOP */
+
+    #scrollTop {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        width: 48px;
+        height: 48px;
+        border: none;
+        border-radius: 12px;
+        background: var(--primary);
+        color: #07111f;
+        font-size: 1.3rem;
+        cursor: pointer;
+        display: none;
+        z-index: 999;
+        font-weight: bold;
+    }
+
+    /* TOAST */
+
+    #toast {
+        position: fixed;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--card);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 13px 20px;
+        border-radius: 10px;
+        opacity: 0;
+        transition: 0.3s;
+        z-index: 2000;
+        box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    #toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+        .nav-links {
+            position: absolute;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            background: var(--nav);
+            border-bottom: 1px solid var(--border);
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+            gap: 18px;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .menu-btn {
+            display: block;
+        }
+
+        .hero-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .hero-buttons {
+            justify-content: center;
+        }
+
+        .hero-card {
+            order: -1;
+        }
+
+        .profile-circle {
+            width: 240px;
+            height: 240px;
+        }
+
+        .about-grid,
+        .contact-grid,
+        .skills-grid,
+        .projects-grid,
+        .achievement-list {
+            grid-template-columns: 1fr;
+        }
+
+        .cards-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 550px) {
+
+        section {
+            padding: 70px 0;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+        }
+
+        .cards-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cgpa-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .profile-circle {
+            width: 210px;
+            height: 210px;
+        }
+
+        .project-buttons {
+            flex-direction: column;
+        }
+
+        .project-buttons .btn {
+            width: 100%;
+        }
+
+        .nav-actions {
+            gap: 6px;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+    <div class="container nav-container">
+
+        <a href="#home" class="logo">Ronak Kale</a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="theme-btn" id="themeBtn" title="Change theme">🌙</button>
+            <button class="menu-btn" id="menuBtn" title="Open menu">☰</button>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="container hero-content">
+
+        <div class="hero-text">
+
+            <div class="small-title">HELLO, I'M</div>
+
+            <h1>Ronak <span>Kale</span></h1>
+
+            <h2>BSc IT Student & Developer</h2>
+
+            <p>
+                I am a technology enthusiast and BSc IT student interested in
+                software development, Artificial Intelligence, Machine Learning,
+                Computer Vision and building practical projects.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects" class="btn btn-primary">
+                    🚀 View My Projects
+                </a>
+
+                <a href="resume.pdf" target="_blank" class="btn btn-outline">
+                    📄 View Resume
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/ronak-kale-1938b83a7/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    💼 LinkedIn
+                </a>
+
+                <a
+                    href="https://github.com/19ronak"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    🐙 GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="profile-circle">
+
+                <!--
+                    To add your photo:
+                    1. Put your image in this folder.
+                    2. Rename it to profile.jpg
+                    3. Replace the placeholder below with:
+
+                    <img src="profile.jpg" alt="Ronak Kale">
+                -->
+
+                <div class="profile-placeholder">RK</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>About Me</h2>
+            <p>A little information about me</p>
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="info-card">
+
+                <h3>Who I Am</h3>
+
+                <p>
+                    I am Ronak Kale, currently pursuing a Bachelor of Science
+                    in Information Technology. I enjoy learning new technologies
+                    and creating projects that combine programming with practical
+                    problem solving.
+                </p>
+
+                <br>
+
+                <p>
+                    My interests include Python, Java, Web Development,
+                    AI/ML, Computer Vision, Git/GitHub and software development.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>Personal Details</h3>
+
+                <ul class="details">
+
+                    <li>
+                        <strong>Name:</strong>
+                        <span>Ronak Kale</span>
+                    </li>
+
+                    <li>
+                        <strong>DOB:</strong>
+                        <span>19/11/2006</span>
+                    </li>
+
+                    <li>
+                        <strong>Phone:</strong>
+                        <span>
+                            <a href="tel:+919152598764">+91 9152598764</a>
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Email:</strong>
+                        <span>
+                            <a href="mailto:ronakkale00@gmail.com">
+                                ronakkale00@gmail.com
+                            </a>
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Location:</strong>
+                        <span>Mumbai, Maharashtra, India</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EDUCATION ================= -->
+
+<section id="education">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Education</h2>
+
+            <p>My academic journey</p>
+
+        </div>
+
+
+        <div class="education-card">
+
+            <h3>Currently Pursuing</h3>
+
+            <div class="degree">
+                Bachelor of Science in Information Technology (BSc IT)
+            </div>
+
+            <div class="college">
+                Currently in Third Year (TY)
+            </div>
+
+
+            <div class="cgpa-grid">
+
+                <div class="cgpa-box">
+
+                    <h4>First Year CGPA</h4>
+
+                    <strong>7.9</strong>
+
+                </div>
+
+
+                <div class="cgpa-box">
+
+                    <h4>Second Year CGPA</h4>
+
+                    <strong>8.1</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SKILLS ================= -->
+
+<section id="skills">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Skills</h2>
+
+            <p>My current technical and problem-solving skills</p>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <!-- Python 60 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>Python</span>
+                    <span>60%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="60"></div>
+                </div>
+
+            </div>
+
+
+            <!-- Java 40 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>Java</span>
+                    <span>40%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="40"></div>
+                </div>
+
+            </div>
+
+
+            <!-- HTML 80 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>HTML</span>
+                    <span>80%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="80"></div>
+                </div>
+
+            </div>
+
+
+            <!-- CSS 50 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>CSS</span>
+                    <span>50%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="50"></div>
+                </div>
+
+            </div>
+
+
+            <!-- JavaScript 40 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>JavaScript</span>
+                    <span>40%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="40"></div>
+                </div>
+
+            </div>
+
+
+            <!-- SQL 50 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>SQL</span>
+                    <span>50%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="50"></div>
+                </div>
+
+            </div>
+
+
+            <!-- AI / ML 30 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>AI / ML</span>
+                    <span>30%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="30"></div>
+                </div>
+
+            </div>
+
+
+            <!-- Computer Vision 40 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>Computer Vision</span>
+                    <span>40%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="40"></div>
+                </div>
+
+            </div>
+
+
+            <!-- Git / GitHub 40 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>Git / GitHub</span>
+                    <span>40%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="40"></div>
+                </div>
+
+            </div>
+
+
+            <!-- Problem Solving 60 -->
+
+            <div class="skill">
+
+                <div class="skill-header">
+                    <span>Problem Solving</span>
+                    <span>60%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-progress" data-value="60"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>My Projects💻</h2>
+
+            <p>Projects I have built while learning and experimenting</p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+            <!-- PROJECT 1 -->
+
+            <div class="project-card">
+
+                <div class="project-icon">🎨</div>
+
+                <h3>Image Color Changer</h3>
+
+                <p>
+                    A computer vision project that adds realistic color
+                    to black-and-white images using deep learning based
+                    image colorization.
+                </p>
+
+                <div class="tech-stack">
+
+                    <span class="tech">Python</span>
+                    <span class="tech">OpenCV</span>
+                    <span class="tech">Deep Learning</span>
+                    <span class="tech">Computer Vision</span>
+
+                </div>
+
+                <div class="project-buttons">
+
+                    <a
+                        href="https://github.com/19ronak/Image-Color-Changer"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary">
+                        🐙 View Repository
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 2 -->
+
+            <div class="project-card">
+
+                <div class="project-icon">🏍️</div>
+
+                <h3>2D Bike Ride</h3>
+
+                <p>
+                    A 2D bike riding game created with Python. The game
+                    includes obstacles, scoring, lanes, skins, settings
+                    and gameplay mechanics.
+                </p>
+
+                <div class="tech-stack">
+
+                    <span class="tech">Python</span>
+                    <span class="tech">OpenCV</span>
+                    <span class="tech">2D Game</span>
+
+                </div>
+
+                <div class="project-buttons">
+
+                    <a
+                        href="https://github.com/19ronak/Bike-Ride"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary">
+                        🐙 View Repository
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 3 -->
+
+            <div class="project-card">
+
+                <div class="project-icon">✋</div>
+
+                <h3>Hand Gesture Volume Control</h3>
+
+                <p>
+                    A computer vision application that allows users
+                    to control system volume using hand gestures.
+                </p>
+
+                <div class="tech-stack">
+
+                    <span class="tech">Python</span>
+                    <span class="tech">OpenCV</span>
+                    <span class="tech">MediaPipe</span>
+                    <span class="tech">PyCaw</span>
+
+                </div>
+
+                <div class="project-buttons">
+
+                    <a
+                        href="https://github.com/19ronak/Hand-Gesture-Volume"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary">
+                        🐙 View Repository
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 4 -->
+
+            <div class="project-card">
+
+                <div class="project-icon">🫥</div>
+
+                <h3>Invisible Cloak</h3>
+
+                <p>
+                    An OpenCV-based invisibility cloak project that
+                    detects a selected color and replaces it with
+                    the background.
+                </p>
+
+                <div class="tech-stack">
+
+                    <span class="tech">Python</span>
+                    <span class="tech">OpenCV</span>
+                    <span class="tech">NumPy</span>
+                    <span class="tech">Computer Vision</span>
+
+                </div>
+
+                <div class="project-buttons">
+
+                    <a
+                        href="https://github.com/19ronak/Invisible-Cloak-OpenCV"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary">
+                        🐙 View Repository
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 5 -->
+
+            <div class="project-card">
+
+                <div class="project-icon">🤖</div>
+
+                <h3>Interview Coach AI</h3>
+
+                <p>
+                    An AI-powered interview coaching project designed
+                    to help users practise interviews and improve
+                    their responses using AI.
+                </p>
+
+                <div class="tech-stack">
+
+                    <span class="tech">Python</span>
+                    <span class="tech">AI</span>
+                    <span class="tech">Ollama</span>
+                    <span class="tech">LLM</span>
+
+                </div>
+
+                <div class="project-buttons">
+
+                    <a
+                        href="https://github.com/19ronak/Interview-Coach-AI"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary">
+                        🐙 View Repository
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= COURSES ================= -->
+
+<!-- ================= COURSES & CERTIFICATIONS ================= -->
+
+<section id="courses">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>📜 Courses & Certifications</h2>
+
+            <p>Courses and certifications that support my technical and professional development</p>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <!-- YUVA AI FOR ALL -->
+
+            <div class="timeline-item">
+
+                <h3>Yuva AI for All</h3>
+
+                <p>
+                    <strong>MeitY – nasscom Digital Skilling Initiative</strong>
+                    · nasscom FutureSkills PRIME
+                </p>
+
+                <p>
+                    Completed a national AI-literacy foundation program
+                    covering Artificial Intelligence fundamentals,
+                    Generative AI, practical AI applications, prompting,
+                    and responsible use of AI.
+                </p>
+
+                <br>
+
+                <a
+                    href="yuva_ai.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    📄 View Certificate
+                </a>
+
+            </div>
+
+
+            <!-- TCS ION CAREER EDGE -->
+
+            <div class="timeline-item">
+
+                <h3>TCS iON Career Edge – Young Professional</h3>
+
+                <p>
+                    <strong>TCS iON</strong>
+                    · Certificate of Achievement
+                </p>
+
+                <p>
+                    Successfully completed the TCS iON Career Edge –
+                    Young Professional course covering communication,
+                    workplace skills, resume writing, interview skills,
+                    problem-solving, IT fundamentals, and an overview
+                    of Artificial Intelligence.
+                </p>
+
+                <br>
+
+                <a
+                    href="TCS iON -Young Professional.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    📄 View Certificate
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<section id="achievements">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Achievements🌟</h2>
+
+            <p>Competitions, ideas and recognitions</p>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <!-- PATHFINDERS -->
+
+            <div class="timeline-item">
+
+                <h3>1st Place — PATHFINDERS AI Portfolio Creation Challenge</h3>
+
+                <p>
+                     Won 1st place as a two-member team with
+                     <strong>TruthLens AI</strong>, a conceptual AI solution designed
+                    to analyze viral news and help determine whether the information
+                    is genuine or fake. The duo's photo was also featured on the
+                    cover page of the PATHFINDERS magazine.
+                </p>
+
+                <!-- OPTIONAL: ADD MAGAZINE COVER IMAGE + BUTTON HERE
+                <a
+                    href="pathfinders-cover.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    📰 View Magazine Cover
+                </a>
+                -->
+
+            </div>
+
+
+            <!-- IDEATHON -->
+
+            <div class="timeline-item">
+
+                <h3>Consolation — College Ideathon</h3>
+
+                <p>
+                    Received a consolation recognition as part of a
+                    three-member team for presenting
+                    <strong>GasGuard</strong>, an IoT-based solution
+                    designed to improve gas safety through connected
+                    monitoring and detection.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WORKSHOPS / EXPERIENCE ================= -->
+
+<section id="experience">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Workshops & Experience</h2>
+
+            <p>Learning experiences and technical activities</p>
+
+        </div>
+
+
+        <div class="timeline">
+
+             <!-- POWER BI WORKSHOP -->
+
+            <div class="timeline-item">
+
+                <h3>Power BI Workshop</h3>
+
+                <p>
+                    <strong>3-Day Online Technical Workshop</strong>
+                    · 2 February 2026 · Online
+                </p>
+
+                <p>
+                    Participated in a 3-day online Microsoft Power BI workshop 
+                    and created a dashboard as part of the learning activities. 
+                    My dashboard was personally selected by the instructor as one of the best submissions.
+                </p>
+
+                <br>
+
+                <a
+                    href="power_bi.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    📄 View Certificate
+                </a>
+
+            </div>
+
+
+            <!-- PROMPT ENGINEERING WORKSHOP -->
+
+            <div class="timeline-item">
+
+                <h3>Mastering Prompt Engineering: The Future of AI Interaction</h3>
+
+                <p>
+                    <strong>National-Level Intercollegiate Workshop</strong>
+                    · 17 December 2025 · Online
+                </p>
+
+                <p>
+                    Participated in a national-level workshop focused on
+                    prompt engineering and AI interaction.
+                </p>
+
+                <br>
+
+                <a
+                    href="prompt-engineering.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    📄 View Certificate
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INTERESTS ================= -->
+
+<section id="interests">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Interests</h2>
+
+            <p>Things I enjoy learning and working on</p>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+
+            <div class="small-card">
+
+                <h3>🤖 Artificial Intelligence</h3>
+
+                <p>
+                    Exploring AI, Machine Learning and intelligent applications.
+                </p>
+
+            </div>
+
+
+            <div class="small-card">
+
+                <h3>👁️ Computer Vision</h3>
+
+                <p>
+                    Building applications using OpenCV and computer vision.
+                </p>
+
+            </div>
+
+
+            <div class="small-card">
+
+                <h3>💻 Software Development</h3>
+
+                <p>
+                    Creating useful applications and learning new technologies.
+                </p>
+
+            </div>
+
+
+            <div class="small-card">
+
+                <h3>🎮 Game Development</h3>
+
+                <p>
+                    Experimenting with game mechanics and interactive applications.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Contact Me</h2>
+
+            <p>Let's connect</p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+            <div class="contact-info">
+
+                <div class="contact-item">
+
+                    <h4>📧 Email</h4>
+
+                    <a href="mailto:ronakkale00@gmail.com">
+                        ronakkale00@gmail.com
+                    </a>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <h4>📱 Phone</h4>
+
+                    <a href="tel:+919152598764">
+                        +91 9152598764
+                    </a>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <h4>💼 LinkedIn</h4>
+
+                    <a
+                        href="https://www.linkedin.com/in/ronak-kale-1938b83a7/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        linkedin.com/in/ronak-kale-1938b83a7
+                    </a>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <h4>🐙 GitHub</h4>
+
+                    <a
+                        href="https://github.com/19ronak"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        github.com/19ronak
+                    </a>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <h4>📍 Location</h4>
+
+                    <p>
+                        Mumbai, Maharashtra, India
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-form">
+
+                <form id="contactForm"
+                      action="https://script.google.com/macros/s/AKfycbxb08KWHx4gtrfEzk1-Z2456_CXgxNhzPOx7bqzpOUppo11650EJSrDYmECDOtqwU_7Hw/exec"
+                      method="POST"
+                      target="contactSubmitFrame">
+
+                    <!-- Anti-spam honeypot. Real users never see this. -->
+                    <input
+                        type="text"
+                        name="website"
+                        id="website"
+                        tabindex="-1"
+                        autocomplete="off"
+                        aria-hidden="true"
+                        style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+
+                    <div class="form-group">
+
+                        <label for="name">Your Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            maxlength="80"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">Your Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            maxlength="150"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="message">Message</label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            maxlength="3000"
+                            placeholder="Write your message..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">
+                        📩 Send Message
+                    </button>
+
+                </form>
+
+                <iframe
+                    name="contactSubmitFrame"
+                    id="contactSubmitFrame"
+                    title="Contact form submission"
+                    style="display:none;"></iframe>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="year"></span> Ronak Kale. All rights reserved.
+        </p>
+
+
+        <div class="social-links">
+
+            <a
+                href="https://github.com/19ronak"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub">
+                🐙
+            </a>
+
+            <a
+                href="https://www.linkedin.com/in/ronak-kale-1938b83a7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="LinkedIn">
+                💼
+            </a>
+
+            <a
+                href="mailto:ronakkale00@gmail.com"
+                title="Email">
+                📧
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL TOP -->
+
+<button id="scrollTop" title="Go to top">↑</button>
+
+<!-- TOAST -->
+
+<div id="toast"></div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    /* ================= MOBILE MENU ================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+
+        navLinks.classList.toggle("active");
+
+        if (navLinks.classList.contains("active")) {
+            menuBtn.textContent = "✕";
+        } else {
+            menuBtn.textContent = "☰";
+        }
+
+    });
+
+
+    /* Close mobile menu after clicking a link */
+
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+            navLinks.classList.remove("active");
+
+            menuBtn.textContent = "☰";
+
+        });
+
+    });
+
+
+    /* ================= THEME ================= */
+
+    const themeBtn = document.getElementById("themeBtn");
+
+    const savedTheme = localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "light") {
+
+        document.body.classList.add("light");
+
+        themeBtn.textContent = "☀️";
+
+    } else {
+
+        themeBtn.textContent = "🌙";
+
+    }
+
+
+    themeBtn.addEventListener("click", function() {
+
+        document.body.classList.toggle("light");
+
+        if (document.body.classList.contains("light")) {
+
+            localStorage.setItem("portfolio-theme", "light");
+
+            themeBtn.textContent = "☀️";
+
+        } else {
+
+            localStorage.setItem("portfolio-theme", "dark");
+
+            themeBtn.textContent = "🌙";
+
+        }
+
+    });
+
+
+    /* ================= SKILL BARS ================= */
+
+    const skillBars =
+        document.querySelectorAll(".skill-progress");
+
+
+    function animateSkills() {
+
+        skillBars.forEach(function(bar) {
+
+            const value = bar.getAttribute("data-value");
+
+            bar.style.width = value + "%";
+
+        });
+
+    }
+
+
+    const skillsSection =
+        document.getElementById("skills");
+
+
+    const skillObserver =
+        new IntersectionObserver(function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+
+                    animateSkills();
+
+                    skillObserver.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.2
+        });
+
+
+    skillObserver.observe(skillsSection);
+
+
+    /* ================= SCROLL TOP ================= */
+
+    const scrollTopBtn =
+        document.getElementById("scrollTop");
+
+
+    window.addEventListener("scroll", function() {
+
+        if (window.scrollY > 400) {
+
+            scrollTopBtn.style.display = "block";
+
+        } else {
+
+            scrollTopBtn.style.display = "none";
+
+        }
+
+    });
+
+
+    scrollTopBtn.addEventListener("click", function() {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* ================= CURRENT YEAR ================= */
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+
+    /* ================= CONTACT FORM ================= */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    const sendButton =
+        contactForm.querySelector('button[type="submit"]');
+
+    let formIsSubmitting = false;
+
+
+    contactForm.addEventListener("submit", function(event) {
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const message =
+            document.getElementById("message").value.trim();
+
+        const website =
+            document.getElementById("website").value.trim();
+
+
+        if (!name || !email || !message) {
+
+            event.preventDefault();
+
+            showToast("Please fill in all fields.");
+
+            return;
+
+        }
+
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+
+            event.preventDefault();
+
+            showToast("Please enter a valid email address.");
+
+            return;
+
+        }
+
+
+        if (website) {
+
+            event.preventDefault();
+
+            showToast("Message could not be sent.");
+
+            return;
+
+        }
+        
+        
+        if (contactForm.action.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
+            event.preventDefault();
+
+            showToast("Contact backend is not connected yet.");
+
+            return;
+
+        }
+
+
+        formIsSubmitting = true;
+
+        sendButton.disabled = true;
+        sendButton.textContent = "Sending...";
+
+        showToast("Sending your message...");
+
+    });
+
+
+    document.getElementById("contactSubmitFrame")
+        .addEventListener("load", function() {
+
+            if (!formIsSubmitting) {
+                return;
+            }
+
+            formIsSubmitting = false;
+
+            contactForm.reset();
+
+            sendButton.disabled = false;
+            sendButton.textContent = "📩 Send Message";
+
+            showToast("Message sent successfully!");
+
+        });
+
+
+    /* ================= TOAST ================= */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+
+        setTimeout(function() {
+
+            toast.classList.remove("show");
+
+        }, 3000);
+
+    }
+
+
+    /* ================= ESCAPE KEY ================= */
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "Escape") {
+
+            navLinks.classList.remove("active");
+
+            menuBtn.textContent = "☰";
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+</html>
