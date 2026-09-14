@@ -1,0 +1,5 @@
+cd ~/Desktop/Ronak-portfolio
+git status
+git add -A
+git commit -m "Update portfolio"
+git push
